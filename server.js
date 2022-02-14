@@ -4,10 +4,11 @@ const PORT = process.env.PORT || 3001;
 const path = require('path');
 
 const { createNewNote, validateNote } = require('./Develop/lib/notes');
-const { notes } = require('./Develop/db/db');
+const notes = require('./Develop/db/db');
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+app.use(express.static('public'));
 
 
 //api routes
@@ -15,7 +16,7 @@ app.get('/api/notes', (req, res)=>{
     res.json(notes);
 });
 
-app.post('/notes', (req, res) =>{
+app.post('/api/notes', (req, res) =>{
     req.body.id = notes.length.toString();
 
     if(!validateNote(req.body)){
