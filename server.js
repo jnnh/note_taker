@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
-
 const path = require('path');
 
 const { createNewNote, validateNote } = require('./Develop/lib/notes');
 const { notes } = require('./Develop/db/db');
+
+app.use(express.urlencoded({ extended: true}));
+app.use(express.json());
+
 
 //api routes
 app.get('/api/notes', (req, res)=>{
