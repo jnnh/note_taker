@@ -4,7 +4,8 @@ const PORT = process.env.PORT || 3001;
 
 const path = require('path');
 
-const notes = require('./Develop/db/db');
+const { createNewNote, validateNote } = require('./Develop/lib/notes');
+const { notes } = require('./Develop/db/db');
 
 //api routes
 app.get('/api/notes', (req, res)=>{
@@ -36,6 +37,7 @@ app.get('*', (req,res)=>{
     res.sendFile(path.join(__dirname, './Develop/public/index.html'));
 })
 
+//end of routes
 app.listen(PORT, ()=> {
     console.log(`API server now on port ${PORT}!`);
 });
